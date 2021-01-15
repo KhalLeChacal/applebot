@@ -1,0 +1,14 @@
+{
+  "name": "training-repo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://louisgallet95@github.com/r-AppleFr/training-repo.git",
+  "author": "Louis Gallet <louis.gallet@tumo.world>",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^12.5.1"
+  },
+  "scripts": {
+    "launch": "node index.js"
+  }
+}
