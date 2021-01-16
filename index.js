@@ -4,14 +4,21 @@ const client = new Discord.Client();
 var prefix = "a!";
 client.setMaxListeners(1000)
 
+'use strict';
+const Discord = require('discord.js');
+const client = new Discord.Client();
+var prefix = "a!";
+client.setMaxListeners(1000)
+
 //help
 client.on('message', msg => {
     if (msg.content.startsWith(prefix + "help")) {
+      if(!msg.guild)return msg.reply("Cette commande est indisponible en DM")
       msg.delete();
       
       var embed = new Discord.MessageEmbed()
         .setTitle('**Help**')
-        .setAuthor("r/Apple Fr" , "https://cdn.discordapp.com/icons/786842731434606602/a_8f2c72e5a82f57b7a6fc9c84591d75f0.gif")
+        .setAuthor("r/Apple Fr" , (msg.guild.iconURL({dynamic : true})))
         .setThumbnail(msg.guild.iconURL({dynamic : true}))
         .setColor("009ff")
         .addField("__Géneral__" ,"`a!help` , `ping`")
@@ -25,9 +32,10 @@ client.on('message', msg => {
 //message en dm
 client.on("message", message => {
     let args = message.content.trim().split(/ +/g) 
-    if(args[0].toLowerCase() === prefix + "mp"){
-  message.delete()
+    if(args[0].toLowerCase() === prefix + "dm"){
     if(message.author.bot)return;
+    if(!message.guild)return message.reply("Cette commande est indisponible en DM")
+      message.delete()
     if(!message.member.hasPermission("ADMINISTRATOR"))return message.reply("Vous n'avez pas la permission de faire cette commande").then(msg => msg.delete({timeout: 10000}))
           let msg = args.slice(2).join(" ")
           let user = message.mentions.members.first()
@@ -63,4 +71,4 @@ client.on('ready', () => {
         }, 10000);
 });
 
-client.login('Nzk5NzAxMzAxNTc1MTU1NzMy.YAHZ4A.HzOdwYCrEgyPWCgMFzrwvFDV0xM');
+client.login('https://discord.com/channels/@me/799158111465373737/799716017432428565');
